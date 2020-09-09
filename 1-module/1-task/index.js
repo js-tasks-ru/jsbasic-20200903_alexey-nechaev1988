@@ -4,10 +4,17 @@
  * @returns {number}
  */
 function factorial(n) {
-  let sum = 1;
+
+
+  let result = 1;
+  if (n === 0 || n === 1) {
+    return result;
+  }
 
   for (let i = 1; i <= n; i++) {
-    sum = sum*i;
+    result = result * i;
+    
   }
-  return sum;
+
+  return result;
 }
