@@ -1,6 +1,7 @@
 .carousel {
   height: var(--carousel-height);
-  position: relative;
+  position: relative; 
+  /* //relative */
   overflow: hidden;
 }
 
@@ -112,6 +113,7 @@
   min-width: 100%;
   display: block;
   position: absolute;
+  object-fit: cover;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
