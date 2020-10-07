@@ -29,7 +29,7 @@ export default class Carousel {
     })
 
     const button = this.elem.querySelector('button')
-    button.addEventListener('click', e => this.onClick.bind(this))
+    button.addEventListener('click', ev => this.onClick(ev))
     const carouselSlides = Array.from(carouselInner.children)
     carouselSlides[0].classList.add('current-slide')
 
@@ -84,7 +84,8 @@ onClick(ev){
     detail: ev.target,
     bubbles: true
   })
-  this.elem.dispatchEvent(custEvent)
+  ev.target.dispatchEvent(custEvent)
+  console.log(ev.currentTarget)
     }
 
 
