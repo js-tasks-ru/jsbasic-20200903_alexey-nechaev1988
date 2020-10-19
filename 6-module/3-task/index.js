@@ -4,6 +4,7 @@ export default class Carousel {
   constructor(slides) {
     this.elem = document.createElement('div')
     this.elem.classList.add('carousel')
+    this.addNewEvent()
 
     this.elem.innerHTML = `<div class="carousel__arrow carousel__arrow_right">
     <img src="/assets/images/icons/angle-icon.svg" alt="icon">
@@ -28,13 +29,12 @@ export default class Carousel {
 </div>`
     })
 
-    const button = this.elem.querySelector('button')
-    button.addEventListener('click', ev => this.onClick(ev))
+    
     const carouselSlides = Array.from(carouselInner.children)
     carouselSlides[0].classList.add('current-slide')
 
     carouselSlides.forEach( (slide, index) => {
-      slide.id = 988 * index + 'px'
+      slide.id = 500 * index + 'px'
       })
         
     const rightArrow = this.elem.querySelector('.carousel__arrow_right')
@@ -77,16 +77,21 @@ export default class Carousel {
       
       hideShowArrows(carouselSlides, leftArrow, rightArrow, prevIndex)
     }) 
+    
   }
 
-onClick(ev){
-  const custEvent = new CustomEvent('product-add', {
-    detail: ev.target,
-    bubbles: true
-  })
-  ev.target.dispatchEvent(custEvent)
-  console.log(ev.currentTarget)
+    addNewEvent() {
+      this.elem.onclick = ({target}) => {
+        let button = target.closest('.carousel__button')
+        if(button) {
+          let id = target.closest('[data-id]').dataset.id
+  
+          this.elem.dispatchEvent(new CustomEvent('product-add', {
+            detail: id,
+            bubbles: true
+          }))
+        }
+      }
     }
-
 
 }
